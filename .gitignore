@@ -35,3 +35,4 @@ build/
 
 ### Other ###
 !**/src/main/resources/templates/application.yml
+!**/src/main/resources/templates/application.properties

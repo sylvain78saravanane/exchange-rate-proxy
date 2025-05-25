@@ -17,7 +17,6 @@ public class ExchangeRateKafkaConsumer {
 
     /**
      * Consommateur Kafka pour traiter les messages de taux de change
-     * Cet exemple montre comment les autres équipes peuvent consommer les données
      */
     @KafkaListener(topics = "${exchange-rate.kafka.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(@Payload ExchangeRateData exchangeRateData,
@@ -35,8 +34,6 @@ public class ExchangeRateKafkaConsumer {
                     exchangeRateData.getRates() != null ? exchangeRateData.getRates().size() : 0,
                     exchangeRateData.getTimestamp());
 
-            // Ici, vous pouvez ajouter votre logique de traitement
-            // Par exemple: validation, transformation, stockage en base, envoi vers d'autres systèmes, etc.
             processExchangeRateData(exchangeRateData);
 
             // Acquittement manuel du message
@@ -44,8 +41,6 @@ public class ExchangeRateKafkaConsumer {
 
         } catch (Exception e) {
             log.error("Error processing exchange rate data: {}", e.getMessage(), e);
-            // En cas d'erreur, vous pourriez choisir de ne pas acquitter le message
-            // pour qu'il soit retraité, ou l'envoyer vers une queue d'erreur
         }
     }
 
@@ -53,7 +48,7 @@ public class ExchangeRateKafkaConsumer {
      * Traite les données de taux de change reçues
      */
     private void processExchangeRateData(ExchangeRateData exchangeRateData) {
-        // Exemple de traitement - à adapter selon vos besoins
+
         log.info("Processing exchange rate data for currency: {}", exchangeRateData.getBaseCurrency());
 
         // Vérification de la validité des données
@@ -62,18 +57,13 @@ public class ExchangeRateKafkaConsumer {
             return;
         }
 
-        // Exemple: Log des principales devises
+        // Usage de stream API
         exchangeRateData.getRates().entrySet().stream()
                 .filter(entry -> isMainCurrency(entry.getKey()))
                 .forEach(entry ->
                         log.debug("Rate for {}: {}", entry.getKey(), entry.getValue())
                 );
 
-        // Ici vous pourriez:
-        // - Envoyer une notification
-        // - Mettre à jour un cache
-        // - Déclencher d'autres processus métier
-        // - Envoyer vers d'autres topics Kafka
     }
 
     /**

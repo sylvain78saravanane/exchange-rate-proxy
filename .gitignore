@@ -34,5 +34,4 @@ build/
 .vscode/
 
 ### Other ###
-docker-compose.yml
-/src/main/resources
+/src/main/resources/templates/application.yml

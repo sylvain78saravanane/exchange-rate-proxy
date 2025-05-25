@@ -50,7 +50,7 @@ src/main/java/com/exchangerate/
     └── ElasticsearchService.java       # Service Elasticsearch
 ```
 
-## 🛠️ Installation et Démarrage
+## Installation et Démarrage
 
 ### Prérequis
 - Java 17+
@@ -59,7 +59,7 @@ src/main/java/com/exchangerate/
 
 ### 1. Cloner le projet
 ```bash
-git clone <url-du-projet>
+git clone https://github.com/sylvain78saravanane/exchange-rate-proxy.git
 cd exchange-rate-proxy
 ```
 

@@ -27,7 +27,7 @@ public class ElasticsearchService {
     public void saveExchangeRate(ExchangeRateData exchangeRateData) {
         try {
             elasticsearchOperations.save(exchangeRateData);
-            log.trace("Yeeeeeah boy, Saved exchange rate data to Elastic Search : {}",
+            log.trace("Saved exchange rate data to Elastic Search : {}",
                     exchangeRateData.getId());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
